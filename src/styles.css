@@ -1,0 +1,221 @@
+/* INDICE 
+contenedores ----
+productos ----
+COLORES GENERALES ---
+*/
+
+
+/* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* html, body {
+  overflow-x: hidden; NO RECUEERDO PARA QUE PUSE ESTO, PERO SI SE PONE, NO SE PODRÁ USAR EL STICKY. y más porque están en todo el proyecto html y css
+} */
+
+.name_sitio{
+  font-family: fantasy;
+  font-variant: small-caps;
+  font-size: 30px;
+}
+
+
+.link-blanco{
+  color: var(--txt-semiBlanco);
+  font-weight: 500;
+}
+
+
+.tamanio-icon{
+  width: 10px;
+  height: auto;
+}
+
+/* contenedores */
+
+.c-full {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  background-color: var(--fondo-productos);
+}
+
+.c-medium {
+  width: 78.5%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.c-medio-list {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* .mensaje_mouse{
+  position: relative;
+  color: #ffff;
+  top: 10px;
+  background-color: #202121;
+  padding: 10px 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 117, 229, 0.5);
+  z-index: 20;
+} */
+
+
+.click-message {
+  position: fixed; /* Posición fija para que esté siempre visible */
+  bottom: 20px; /* Ajusta la posición vertical del mensaje */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente */
+  color: var(--txt-blanco);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+
+
+/* Productos css GENERAL */
+
+
+
+.div-img {
+  position: relative;
+}
+
+.div-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+
+.div-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6); /* White overlay with 60% opacity */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.div-img:hover{
+  transition: all 400ms;
+    border: 2px solid #0075e5;
+    box-shadow: 0 0 30px rgba(0, 117, 229, 0.5);
+}
+
+.info {
+  background-color: #131312;
+  color: #ffff;
+}
+
+.info p {
+  padding-top: 10px;
+  /* font-size: 14px; */
+  font-family: sans-serif;
+  line-height: 20px;
+}
+
+.precios {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-descuento {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.p-descuento{
+  background-color: #0075e5;;
+  background-color: #15F7FC;
+  background-color: #4dd2d4;
+  background-color: blueviolet;
+  background-color: #39a0a2;
+
+  font-size: 10px;
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: 800;
+}
+
+.c-cantidad {
+  width: 50%;
+  /* display: flex;
+  justify-content: flex-end; */
+}
+
+.c-cantidad p{
+  font-size: 15px;
+  font-size: 14px;
+  /* font-weight: 550; */
+  display: flex;
+  justify-content: end;
+}
+
+
+
+/* FUENTES INSTALADAS*/
+
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/assets/fuentes/Oswald-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+}
+
+
+/* responsivo */
+
+@media screen and (max-width: 900px) {
+  
+  
+
+}
+
+
+/* 
+      REGLA DE VARIABLES CSS  
+      ------ = contenedor padre
+      ----- = contenedor hijo
+      ---- = contenedor nieto
+      --- = colores,
+      -- = padding,
+      - = font-size,
+
+
+ */
+
+
+ /* COLORES GENERALES */
+:root{
+  --txt-blanco: #ffff;
+  --txt-semiBlanco: rgb(210, 210, 210);
+  --txt-semiTransparenteBlanco: #7575754e;
+  --txt-negro: #000;
+  --btn-morado: blueviolet;
+  --btn-azulCielo: #12F9FD;
+  --fondo-header: #1D1D1D;
+  --fondo-productos: #121313;
+  --fondo-negro: #0000;
+  --btn-flechas: #202121;
+  --btn-flechas2: #363636;
+
+  --hola:blue;
+}

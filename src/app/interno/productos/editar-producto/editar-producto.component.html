@@ -1,0 +1,200 @@
+<div class="c-full">
+    <div class="c-medium">
+        <div class="c-titulo">
+            <h1 id="coleccion-h1">Editar Juego</h1>
+        </div>
+
+        <div class="c-formulario">
+
+            <form class="cont-hijo" id="formulario" method="POST">
+                <div class="marca">
+                    <img src="./../../../assets/Logo0.png" alt="">
+                    <h1>GhostGames</h1>
+                </div>
+                <!-- <h2 id="login">EDITAR PRODUCTO</h2> -->
+
+                <div class="cont-nieto">
+                    <!-- <img id="img-actual" src="./../../../assets/Logo0.png" alt=""> -->
+
+                    <div class="cont-imagen">
+
+                        <img id="img-actual" src="{{api_juegoInfo.portada}}">
+                        <button class="label-edit">
+                            <i class="fi fi-sr-file-edit"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto">
+
+
+
+                    <div class="form-div">
+                        <label class="form-label" for="nombre">Titulo</label>
+                        <input class="form-input" placeholder="Resident Evil RE 2" value="{{api_juegoInfo.titulo}}" type="text" name="nombre"
+                            id="nombre">
+                    </div>
+                    <div class="form-div">
+                        <label class="form-label" for="correo">Categoría</label>
+                        <input class="form-input" placeholder="Survival Horror" value="{{api_juegoInfo.categoria_id}}" type="email" name="correo" id="correo">
+                    </div>
+
+                    <div class="form-div">
+                        <div class="form-subDiv">
+                            <label class="form-label" for="nombre">Precio</label>
+                            <input class="form-input" placeholder="1,200" value="{{api_juegoInfo.precio}}" type="text" name="nombre" id="nombre">
+                        </div>
+                        <div class="form-subDiv">
+                            <label class="form-label" for="correo">Descuento</label>
+                            <input class="form-input" placeholder="20%" value="{{api_juegoInfo.precioDescontado}}" type="email" name="correo" id="correo">
+                        </div>
+                    </div>
+
+
+                    <div class="form-div">
+                        <label class="form-label" for="nombre">Tipo Juego</label>
+                        <input class="form-input" placeholder="JUEGO BASE" value="{{api_juegoInfo.versionJuego}}" type="text" name="nombre" id="nombre">
+                    </div>
+                    <div class="form-div">
+                        <label class="form-label" for="correo">Inicio Descuento</label>
+                        <input class="form-input" type="email"value="{{api_juegoInfo.inicio_descuento}}" name="correo" id="correo">
+                    </div>
+
+                    <div class="form-div">
+                        <label class="form-label" for="correo">Termino Descuento</label>
+                        <input class="form-input" type="email" value="{{api_juegoInfo.fin_descuento}}" name="correo" id="correo">
+                    </div>
+
+                    <div class="form-textarea">
+                        <label class="form-label-textarea" for="mensaje">Descripción</label>
+                        <textarea name="mensaje" id="mensaje">{{api_juegoInfo.Descripcion}}</textarea>
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto">
+
+                    <div class="cont-imagen"  *ngFor="let imagen of api_imagenes">
+                        <button class="label-delete">
+                            <i class="fi fi-sr-trash"></i>
+                        </button>
+
+                        <img id="galeria-img" src="{{imagen.ruta_img}}" alt="">
+
+                        <button class="label-show">
+                            <i class="fi fi-sr-eye"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto" id="c-btnSubmit">
+                    <button id="btn-registrarme" type="submit" name="submit">Registrarme</button>
+                </div>
+                <div class="helpme">
+                    <a href="">Ayuda / Mapa del sitio</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="c-full">
+    <div class="c-medium">
+        <div class="c-titulo">
+            <h1 id="coleccion-h1">Editar Juego</h1>
+        </div>
+
+        <div class="c-formulario">
+
+            <form class="cont-hijo" id="formulario" method="POST">
+                <div class="marca">
+                    <img src="./../../../assets/Logo0.png" alt="">
+                    <h1>GhostGames</h1>
+                </div>
+                <div class="cont-nieto">
+                    <div class="cont-imagen">
+
+                        <img id="img-actual" src="./../../../assets/portadas/GTAV.avif" alt="">
+                        <button class="label-edit">
+                            <i class="fi fi-sr-file-edit"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cont-nieto">
+                    <div class="form-div">
+                        <label class="form-label" for="nombre">Titulo</label>
+                        <input class="form-input" placeholder="Resident Evil RE 2" type="text" name="nombre"
+                            id="nombre">
+                    </div>
+                    <div class="form-div">
+                        <label class="form-label" for="correo">Categoría</label>
+                        <input class="form-input" placeholder="Survival Horror" type="email" name="correo" id="correo">
+                    </div>
+
+                    <div class="form-div">
+                        <div class="form-subDiv">
+                            <label class="form-label" for="nombre">Precio</label>
+                            <input class="form-input" placeholder="1,200" type="text" name="nombre" id="nombre">
+                        </div>
+                        <div class="form-subDiv">
+                            <label class="form-label" for="correo">Descuento</label>
+                            <input class="form-input" placeholder="20%" type="email" name="correo" id="correo">
+                        </div>
+                    </div>
+
+
+                    <div class="form-div">
+                        <label class="form-label" for="nombre">Tipo Juego</label>
+                        <input class="form-input" placeholder="JUEGO BASE" type="text" name="nombre" id="nombre">
+                    </div>
+                    <div class="form-div">
+                        <label class="form-label" for="correo">Termino Inicio</label>
+                        <input class="form-input" type="email" name="correo" id="correo">
+                    </div>
+
+                    <div class="form-div">
+                        <label class="form-label" for="correo">Inicio Descuento</label>
+                        <input class="form-input" type="email" name="correo" id="correo">
+                    </div>
+
+                    <div class="form-textarea">
+                        <label class="form-label-textarea" for="mensaje">Descripción</label>
+                        <textarea name="mensaje" id="mensaje"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto">
+
+                    <div class="cont-imagen">
+                        <button class="label-delete">
+                            <i class="fi fi-sr-trash"></i>
+                        </button>
+
+                        <img id="galeria-img" src="./../../../assets/carousel-juegos/BEHAVIOR/1dbd.jpg" alt="">
+
+                        <button class="label-show">
+                            <i class="fi fi-sr-eye"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto" id="c-btnSubmit">
+                    <button id="btn-registrarme" type="submit" name="submit">Registrarme</button>
+                </div>
+                <div class="helpme">
+                    <a href="">Ayuda / Mapa del sitio</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div> -->
