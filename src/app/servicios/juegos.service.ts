@@ -4,13 +4,17 @@ import { environment } from 'src/environments/environment'
 import { map, Observable } from 'rxjs';
 import { IF_JuegoCarrusel, IF_JuegoCompleto } from '../interfaces/juegoCarruselData';
 import { IF_galeriaCarrusel } from '../interfaces/juegoGaleriaData';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JuegosService {
 
-  constructor(private httpC: HttpClient) { }
+  constructor(
+    private httpC: HttpClient,
+    private router:Router
+  ) { }
 
   private GG_API = environment.apiRest; //http://localhost:8000/api/
   private STORAGE_URL = environment.apiStorage; //http://localhost:8000/storage/
@@ -82,6 +86,20 @@ export class JuegosService {
     const url = `${this.GG_API}galeria/${id}`; // Cambia esto según la URL de tu API
     return this.httpC.get<{ ruta_img: string, activo: number }[]>(url);
   }
+
+
+  // Barra de busqueda
+
+  getBuscador(termino: string):Observable<IF_JuegoCarrusel[]>{
+    return this.httpC.get<any[]>(`${this.GG_API}buscar?buscador=${termino}`);
+    // return this.httpC.get<any[]>
+    // (`${this.GG_API}buscar?buscador=${termino}`)
+  }
+
+  redireccionVista(id: number){
+    this.router.navigate(['/preview',id])
+  }
+
 
 
 

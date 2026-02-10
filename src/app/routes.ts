@@ -17,9 +17,14 @@ import { CestaComponent } from './paginas/cesta/cesta.component';
 import { ListaProductosComponent } from './interno/productos/lista-productos/lista-productos.component';
 import { AddProductoComponent } from './interno/productos/add-producto/add-producto.component';
 import { EditarProductoComponent } from './interno/productos/editar-producto/editar-producto.component';
+import { BuscadorComponent } from './reutilizables/buscador/buscador.component';
 
 
 const routes: Routes = [
+
+  //pruebas quitar buscador test
+  {path: 'buscador-test', component: BuscadorComponent, title: 'Test - Buscador'},
+
   { path: 'inicio', component: InicioComponent, title: 'Pagina de inicio' },
   { path: 'detalles', component: DetailsComponent, title: 'Pagina de detalles'  },
   { path: 'librerias', component: LibreriasComponent, title: 'Prueba'  },
@@ -53,7 +58,8 @@ const routes: Routes = [
   },
   {path: 'contacto', component: ContactoComponent, title: 'Contactame :D'},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: '**', redirectTo: '/inicio' } // Ruta de fallback
+  { path: '**', redirectTo: '/inicio' }, // Ruta de fallback
+
 ];
 
 export default routes;

@@ -27,16 +27,19 @@ export class EditarProductoComponent {
   private STORAGE_URL = environment.apiStorage; //http://localhost:8000/storage/
 
 
+  modoEdicion: boolean = false;
+  
+
+
+
+
   ngOnInit(): void {
     this.rou.params.subscribe( (parametro) => {
       const prod_ID = +parametro['id'];
       this.getJuego(prod_ID);
 
       this.getGaleriaJuego(prod_ID);
-    });    
-
-
-    
+    });        
   }
 
   getJuego(id:number){
@@ -69,6 +72,13 @@ export class EditarProductoComponent {
       }));
       console.log("Imágenes con ruta completa:", this.api_imagenes);
     });
+  }
+
+
+  guardar(){
+    // if(){
+
+    // }
   }
   
 

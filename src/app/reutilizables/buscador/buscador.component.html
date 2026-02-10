@@ -1,13 +1,18 @@
 <div id="content-buscador" [style.background-color]="colorFondos" #backgroundDiv>
   <div class="cont-buscador">
     <div class="c-buscador-m">
-      <svg class="tamanio-icon" style="position: relative; left: 22px; color: #8d8c8c;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path fill="#ffffff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+      <svg class="tamanio-icon" style="position: relative; left: 22px; color: #8d8c8c;"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="#ffffff"
+          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
       </svg>
-      <input type="text" name="" class="input-buscador" placeholder="Buscar en la tienda">
+
+      <input type="text" [(ngModel)]="termino" (input)="ejecutarBusqueda()" name="" class="input-buscador"
+        placeholder="Buscar en la tienda">
+
       <a href="" class="link-blanco">Descubrir</a>
       <a href="explorar" class="link-blanco">Explorar</a>
-      <a href="" class="link-blanco">Noticias</a>      
+      <a href="" class="link-blanco">Noticias</a>
       <div id="cesta-div">
         <!-- <button id="btn-icon" class="link-blanco" (click)="showModal()"><i class="fi fi-sr-shopping-cart cesta-icono" ></i></button>
         <p class="link-blanco">Productos en la Cesta: </p>
@@ -22,8 +27,47 @@
         <p class="link-blanco">Costo total es: {{dataTotalCesta}}</p> -->
       </div>
     </div>
+
   </div>
+  <!-- <div id="resultados_div" *ngIf="resultados.length > 0">
+    <div class="c-buscador" *ngFor="let juego of resultados">
+      <div class="c-buscador-m">
+        <img [src]="juego.portada" alt="">
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="cont_1" *ngIf="resultados.length > 0">
+    <div class="cont_2">
+
+      <!-- <div class="cont_3" >
+        <img class="img_busqueda" src="http://localhost:4200/assets/carousel-juegos/dbd_Portada.avif" alt="">
+        <div class="info_busqueda">
+          <p class="titulo_busqueda" >Dead By Daylight</p>
+          <p class="precio_busqueda" >300 Mxn</p>
+          <p class="precio_busqueda" >Descuento del 14%</p>
+        </div>
+      </div> -->
+
+      <div (click)="detalleProducto(juego.id)" class="cont_3" *ngFor="let juego of resultados">
+        <img class="img_busqueda" [src]="juego.portada" alt="">
+        <div class="info_busqueda">
+          <p class="titulo_busqueda">{{juego.titulo}}</p>
+          <p class="precio_busqueda" *ngIf="juego.precio === 0" >GRATIS</p>
+          <p class="p-descuento_busqueda" *ngIf="juego.precio > 0" >{{juego.descuento}}%</p>
+          <p class="precio_descontado" *ngIf="juego.precio > 0" >${{juego.precio}} Mxn</p>
+          <p class="precio_busqueda" *ngIf="juego.precio > 0" >{{juego.precioDescontado}} MXN</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+
+
+
 
 <!-- <app-cesta-modal [isVisible]="isVIsible" (onClose)="handleClose()">
   <h2>{{ modalTitle }}</h2>

@@ -2,17 +2,23 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild, OnDestroy, ViewEnc
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BuscadorService } from '../../servicios/dinamicos/buscador.service';
 import { CestaModalComponent } from '../cesta-modal/cesta-modal.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf, NgForOf, NgClass } from '@angular/common';
+import { JuegosService } from 'src/app/servicios/juegos.service';
+import { FormsModule, NgModel, ɵInternalFormsSharedModule } from "@angular/forms";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-buscador',
   standalone: true,
   imports: [
-
-    CestaModalComponent,
-    NgFor,
-
-  ],
+    // CestaModalComponent,
+    // NgFor,
+    ɵInternalFormsSharedModule,
+    FormsModule,
+    NgIf,
+    NgForOf,
+    NgClass
+],
   // exportAs: ['buscador'],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css',
@@ -33,7 +39,8 @@ export class BuscadorComponent implements OnInit{
     private router:Router,
     private el:ElementRef,
     private renderer2:Renderer2,
-    private buscadorService:BuscadorService
+    private buscadorService:BuscadorService,
+    private _juegosBuscador:JuegosService
   ){}
 
   datos:any;
@@ -41,6 +48,9 @@ export class BuscadorComponent implements OnInit{
   // cambiar fondo dinamicamente
   // colorFondos:any;
   colorFondos: string = '#121313'; // Color por defecto
+
+
+  private STORAGE_URL = environment.apiStorage //http://localhost:8000/storage/
   
   
 
@@ -85,6 +95,54 @@ export class BuscadorComponent implements OnInit{
     if (producto) return producto;
   }
 
+
+
+  // BARRA DE BUSQUEDA ************************************************************************************************************************************************
+  
+    // Buscar Por Nombre 
+
+    resultados: any[] = []; //Aqui se guarda la información recibida desde Laravel
+
+    termino: string = ''; //Variable para el texto que escribe el usuario
+
+    ejecutarBusqueda(){ //función que se llamará desde el HTML
+      if(this.termino.length > 2){ // si el usuario escribió más de dos letras empezará a ejecutarse la búsqueda
+        this._juegosBuscador.getBuscador(this.termino).subscribe({ // entra al servicio colocado y ejecuta la función correspondiente para ingresar el termino que ingreso el usuario 
+          next: (resp) => {
+            //  PARA PRUEBAS EN CONSOLA ANTES DE INVOLUCRAR DISEÑO: datos de prueba, antes de usar el HTML
+            // this.resultados = resp;
+            // console.log('Juegos encontrados: ',this.resultados); 
+
+            this.resultados = resp.map( juego => { // Hay otra forma similar para mapear resultados, ejemplo en la funcion getJuegos_carrusel() de PRODUCTO-CAROUSEL.COMPONENT.TS
+              return {
+                ...juego,
+                portada: `${this.STORAGE_URL}${juego.portada}`
+              }
+            });
+            console.log('Resultados encontrados con la URL corregida: :D');
+          },
+          error: (err) => { //cuando ocurra un error en la conexion con la BD
+            console.error('Error al encontrar los datos solicitados', err);
+          }
+        })
+      }else{
+        this.resultados = []; // cuando no se cumpla la condición de minimo 3 caracteres en el buscador
+      }
+    }
+    // Buscar Por Nombre 
+
+
+
+    detalleProducto(id:number){
+      this._juegosBuscador.redireccionVista(id);
+
+      this.resultados = [];
+    }
+
+
+
+
+  // BARRA DE BUSQUEDA *-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*
   
 
 

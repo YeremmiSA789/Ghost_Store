@@ -99,3 +99,113 @@ input::placeholder{
   font-size: 25px;
   color: blue;
 }
+
+
+
+.cont_1{
+  position: absolute;
+  top: 100%;
+  left: 10.5%; /* Alineado con tu input */
+  width: calc(100% - 10.5%); /* 👈 Esto evita que se desborde a la derecha */
+  display: flex;
+  justify-content: flex-start; /* 👈 importante */
+  background-color: transparent; /* 👈 clave */
+  z-index: 29;
+  /* margin-left: 10%; */
+  width: 350px;
+}
+
+
+
+.cont_2{
+  display: flex;
+  width: 600px;
+  /* width: 350px; */
+  flex-direction: column;
+  background-color: #252525; /* solo donde hay resultados */
+
+  border: 1px solid white;
+}
+
+
+.cont_3{
+  display: flex ;
+  /* width: 580px; */
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+.cont_3:hover{
+  background-color: #3b3b3b; /* solo donde hay resultados */
+}
+
+
+.img_busqueda{
+  width: 80px;
+}
+
+
+.info_busqueda{
+  width: 80%;
+  /* background-color: red; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.titulo_busqueda {
+  color: white;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 12px;
+  width: 100%;
+}
+
+
+.precio_busqueda {
+  color: white;
+  color: #39a0a2;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 12px;
+
+  width: 50%;
+}
+
+
+.p-descuento_busqueda{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  /* height: 20px; */
+  background-color: #39a0a2;
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: 800;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+
+
+
+.precio_descontado{
+  color: #777677;
+  line-height: 15px;
+  text-decoration: line-through;
+  font-size: 12px;
+  width: 50%;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  margin-left: 10px;
+
+
+
+}
+
+
+
