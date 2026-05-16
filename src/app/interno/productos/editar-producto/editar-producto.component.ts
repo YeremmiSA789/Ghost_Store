@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JuegosService } from 'src/app/servicios/juegos.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,27 +18,46 @@ export class EditarProductoComponent {
   constructor(
     private sv_juego:JuegosService,
     private rou:ActivatedRoute, //Obtener la info del producto atraves del ID
-
+    private router:Router, //Redirecciones
   ){}
 
-  api_juegoInfo:any;
-  api_imagenes:any
+  api_juegoInfo:any = {
+    titulo: '',
+    categoría_id: null,
+    precio: 0,
+    precioDescontado: 0,
+    versionJuego: 'JUEGO BASE',
+    inicio_descuento: '',
+    fin_descuento: '',
+    Descripcion: '',
+
+  };
+
+
+  api_imagenes:any [] = [];
+
+
+
   // elementos: ImageItem[] = [];
   private STORAGE_URL = environment.apiStorage; //http://localhost:8000/storage/
 
 
-  modoEdicion: boolean = false;
-  
-
+  modoEdicion: boolean = false; //identifica el modo en que se encuentra el formulario 
 
 
 
   ngOnInit(): void {
     this.rou.params.subscribe( (parametro) => {
-      const prod_ID = +parametro['id'];
-      this.getJuego(prod_ID);
+      const prod_ID = parametro['id'];
+      if(prod_ID){
+        this.modoEdicion = true;
+        this.getJuego(+prod_ID);
+        this.getGaleriaJuego(+prod_ID);
 
-      this.getGaleriaJuego(prod_ID);
+      }else{
+        this.modoEdicion = false;
+      }
+
     });        
   }
 
@@ -66,8 +85,8 @@ export class EditarProductoComponent {
   getGaleriaJuego(id: number): void {
     // const STORAGE_URL = 'https://tu-servidor.com/';
     this.sv_juego.getJuego_Galeria(id).subscribe((respo) => {
-      this.api_imagenes = respo.map(img => ({
-        // ...img,
+      this.api_imagenes = respo.map( (img: any) => ({
+        ...img,
         ruta_img: `${this.STORAGE_URL}${img.ruta_img}`
       }));
       console.log("Imágenes con ruta completa:", this.api_imagenes);
@@ -76,9 +95,11 @@ export class EditarProductoComponent {
 
 
   guardar(){
-    // if(){
-
-    // }
+    if(this.modoEdicion){
+      //  Lógica de UPDATE (PUT/PATCH)
+      // this.sv_juego.actualizarJuego();
+      alert("¡Juego actualizado!");
+    }
   }
   
 

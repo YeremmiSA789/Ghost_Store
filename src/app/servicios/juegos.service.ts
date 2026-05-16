@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { IF_JuegoCarrusel, IF_JuegoCompleto } from '../interfaces/juegoCarruselData';
 import { IF_galeriaCarrusel } from '../interfaces/juegoGaleriaData';
 import { Router } from '@angular/router';
+import { IF_categorias } from '../interfaces/JuegoData';
 
 @Injectable({
   providedIn: 'root'
@@ -82,9 +83,9 @@ export class JuegosService {
   //   )
   // }
 
-  getJuego_Galeria(id: number): Observable<{ ruta_img: string, activo: number }[]> {
+  getJuego_Galeria(id: number): Observable<IF_JuegoCarrusel[]> {
     const url = `${this.GG_API}galeria/${id}`; // Cambia esto según la URL de tu API
-    return this.httpC.get<{ ruta_img: string, activo: number }[]>(url);
+    return this.httpC.get<IF_JuegoCarrusel[]>(url);
   }
 
 
@@ -98,6 +99,17 @@ export class JuegosService {
 
   redireccionVista(id: number){
     this.router.navigate(['/preview',id])
+  }
+
+
+  registrarJuego(datosJuego: IF_JuegoCarrusel){
+    // const urlRegistro = `${this.GG_API}/registroJuego`;
+    return this.httpC.post(this.GG_API + "registroJuego",datosJuego);
+  }
+
+
+  getCategorias():Observable<IF_categorias[]>{
+    return this.httpC.get<any[]>(this.GG_API + "categorias")
   }
 
 

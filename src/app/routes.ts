@@ -23,6 +23,9 @@ import { BuscadorComponent } from './reutilizables/buscador/buscador.component';
 const routes: Routes = [
 
   //pruebas quitar buscador test
+  {path: 'juegoFormulario', component: AddProductoComponent, title: 'Registrar Juego'},
+  {path: 'juegoFormulario/:id', component: AddProductoComponent, title: 'Editar Juego'},
+
   {path: 'buscador-test', component: BuscadorComponent, title: 'Test - Buscador'},
 
   { path: 'inicio', component: InicioComponent, title: 'Pagina de inicio' },

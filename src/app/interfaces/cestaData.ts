@@ -8,6 +8,7 @@ export interface IF_juego {
     descuento: number | null;
     precioDescontado: number | null;
     portada:string;
+    
   }
   
   export interface IF_cesta {

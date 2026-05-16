@@ -1,1 +1,171 @@
-<p>add-producto works!</p>
+<div class="c-full">
+    <div class="c-medium">
+        <div class="c-titulo">
+            <h1 id="coleccion-h1">
+                {{ modoEdicion ? 'Editar Juego' : 'Registrar Juego'}}
+            </h1>
+        </div>
+
+        <div class="c-formulario">
+
+            <form class="cont-hijo" id="formulario" method="POST" [formGroup]="juegoForm">
+                <div class="marca">
+                    <img src="./../../../assets/Logo0.png" alt="">
+                    <h1>GhostGames</h1>
+                </div>
+                <!-- <h2 id="login">EDITAR PRODUCTO</h2> -->
+
+                <div class="cont-imagenes">
+
+                    <div class="cont-imagen" style="display: flex; width: 100%; flex-wrap: wrap;">
+
+                        <!-- <img style="width: 100%;" id="img-actual" src=""> -->
+
+
+                        <img id="img-actual" [src]="previewPortada || './../../../assets/image-icon.webp'">
+                        <input style="width: 100%;" type="file" (change)="onFileChange($event, 'portada')" hidden
+                            #portadaInput>
+                        <br>
+                        <button class="btn-general" type="button" (click)="portadaInput.click()"
+                            style="width: 80%;">Buscar Portada</button>
+
+
+                    </div>
+
+
+                    <div class="cont-imagen" style="display: flex; width: 100%; ">
+
+                        <!-- <img style="width: 100%;" id="img-actual" src=""> -->
+                        <img id="img-actual" [src]="previewLogo || './../../../assets/image-icon.webp'">
+
+                        <input style="width: 100%;" type="file" (change)="onFileChangeLogo($event, 'logo')" hidden
+                            #logoInput>
+                        <br>
+                        <button class="btn-general" type="button" (click)="logoInput.click()" style="width: 80%;">Buscar
+                            Logo</button>
+
+
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto">
+
+
+
+                    <div class="form-div">
+                        <label class="form-label" for="nombre">Titulo</label>
+                        <input class="form-input" formControlName="titulo" placeholder="Resident Evil RE 2" value=""
+                            type="text" name="nombre" id="nombre">
+                    </div>
+                    <div class="form-div">
+                        <label style="color: #ffff; font-size: 20px;" for="categoria">Categoría</label>
+                        <!--<input class="form-input" formControlName="categoria_id" placeholder="Survival Horror" value=""
+                            type="text" name="categoria" id="categoria"> -->
+
+                        <select class="btn-registrarme btn-select" formControlName="categoria_id">
+                            <option value="">Seleccione una categoría</option>
+
+                            <option class="form-input" *ngFor="let cat of categorias" [value]="cat.id">
+                                {{ cat.categoria }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-div">
+                        <div class="form-subDiv">
+                            <label class="form-label" for="precio">Precio</label>
+                            <input class="form-input" formControlName="precio" placeholder="1,200" type="text"
+                                name="precio" id="precio">
+                        </div>
+                        <div class="form-subDiv">
+                            <label class="form-label" for="descuento">Descuento</label>
+                            <input class="form-input" formControlName="descuento" placeholder="20%" value=""
+                                type="email" name="descuento" id="descuento">
+                        </div>
+                    </div>
+
+
+                    <div class="form-div">
+
+                        <label class="form-label" for="tipojuego">Tipo Juego</label>
+
+                        <!-- <select class="form-input" formControlName="versionJuego"> -->
+                        <select class="btn-registrarme btn-select" formControlName="versionJuego">
+                            <option value="">Seleccione el tipo de juego</option>
+                            <option class="form-input" *ngFor="let t of tiposJuego" [value]="t.id">
+                                {{ t.nombre }}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="form-div">
+                        <label class="form-label" for="inicio_descuento">Inicio Descuento</label>
+                        <input class="form-input" formControlName="inicio_descuento" type="date" value=""
+                            name="inicio_descuento" id="inicio_descuento">
+                    </div>
+
+                    <div class="form-div">
+                        <label class="form-label" for="fin_descuento">Termino Descuento</label>
+                        <input class="form-input" formControlName="fin_descuento" type="date" value=""
+                            name="fin_descuento" id="fin_descuento">
+                    </div>
+
+                    <div class="form-textarea">
+                        <label class="form-label-textarea" for="descripcion">Descripción</label>
+                        <textarea name="descripcion" formControlName="descripcion" id="descripcion"></textarea>
+                    </div>
+
+                    <div class=" form-textarea">
+                        <label class="form-label-textarea" for="descripcion">Colores de Fondo</label>
+                        <!-- <input type="color" formControlName="colorFondo"> -->
+
+                        <div class="color-picker">
+                            <div *ngFor="let color of colores" class="color-option" [style.background]="color"
+                                [class.selected]="juegoForm.value.colorFondo === color"
+                                (click)="seleccionarColor(color)">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="cont-nieto">
+
+                    <div class="cont-galeria">
+
+                        <div class="cont-imagen" *ngFor="let img of previewGaleria; let i = index">
+
+                            <button class="label-delete" type="button" (click)="eliminarImagen(img, i)">
+                                <i class="fi fi-sr-trash"></i>
+                            </button>
+
+                            <img [src]="img.url">
+
+                        </div>
+
+
+
+                    </div>
+
+                    <input type="file" multiple hidden #galeriaInput (change)="onMultipleFileChange($event)">
+                    <button class="btn-general" type="button" (click)="galeriaInput.click()">
+                        Agregar Imágenes
+                    </button>
+
+                </div>
+
+                <div class="cont-nieto" id="c-btnSubmit">
+                    <button class="btn-registrarme" type="button" (click)="guardarJuego()">
+                        {{modoEdicion ? 'Actualizar' : 'Registrar Juego'}}
+                    </button>
+                </div>
+                <div class="helpme">
+                    <a href="">Ayuda / Mapa del sitio</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
