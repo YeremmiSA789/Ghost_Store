@@ -97,6 +97,11 @@ agregarElemento(textoElemento: string) {
   }
 
 
+  obtenerTipoJuego(version:number):string{
+    return version === 0 ? 'JUEGO BASE' : 'DLC';
+  }
+
+
   // getJuego(id: number): void {
   //   this.sv_juego.getJuego_completo(id).subscribe(
   //     juego => {

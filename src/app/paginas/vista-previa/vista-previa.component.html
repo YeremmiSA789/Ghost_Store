@@ -34,7 +34,7 @@
           </div>
 
           <div *ngIf="api_juegoInfo.fin_descuento" class="precioJuego">
-            <p class="etiquetaBase">{{api_juegoInfo.versionJuego}}</p>
+            <p class="etiquetaBase">{{ obtenerTipoJuego(api_juegoInfo.versionJuego) }}</p>
   
             <div style="display: flex;">
               <p *ngIf="api_juegoInfo.descuento" class="c-descuento-VistaPrevia">{{api_juegoInfo.descuento}} %</p>

@@ -100,7 +100,7 @@ export class AddProductoComponent {
       versionJuego: [''],
       inicio_descuento: [''],
       fin_descuento: [''],
-      Descripcion: [''],
+      descripcion: [''],
       colorFondo: [''],
     });
 
@@ -380,7 +380,7 @@ export class AddProductoComponent {
           versionJuego: resp.versionJuego,
           inicio_descuento: resp.inicio_descuento,
           fin_descuento: resp.fin_descuento,
-          descripcion: resp.descripcion,
+          descripcion: resp.Descripcion,
           colorFondo: resp.colorFondo,
         });
 
